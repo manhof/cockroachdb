@@ -9,28 +9,29 @@ protocol="tcp"
 echo "Firewall Configuration" >> /home/test
 if [[ $serverbuild == *"ubuntu"* ]]
  then
-	echo "[$service]" >> /etc/ufw/applications.d/cockroachdb
-    echo "title=$title" >> /etc/ufw/applications.d/cockroachdb
-    echo "description=$description" >> /etc/ufw/applications.d/cockroachdb
-    echo "ports=$port1,$port2,$protocol" >> /etc/ufw/applications.d/cockroachdb
-    ufw allow in  OpenSSH
-    ufw allow in Cockroachdb
+	echo "[$service]" >> /etc/ufw/applications.d/$service
+    echo "title=$title" >> /etc/ufw/applications.d/$service
+    echo "description=$description" >> /etc/ufw/applications.d/$service
+    echo "ports=$port1,$port2/$protocol" >> /etc/ufw/applications.d/$service
+    ufw update $service
+	ufw allow in OpenSSH
+    ufw allow in $service
     ufw enable
     ufw status >> /home/test
 elif [[ $serverbuild == *"centos"* ]]
  then
 	dnf install firewalld -y
-	echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>" >> /etc/firewalld/services/$title.xml
-	echo "<service>" >> /etc/firewalld/services/$title.xml
-	echo "   <short>$title</short>" >> /etc/firewalld/services/$title.xml
-	echo "   <description>$description</description>" >> /etc/firewalld/services/$title.xml
-	echo "   <port protocol=\"$protocol\" port=\"$port1\"/>" >> /etc/firewalld/services/$title.xml
-	echo "   <port protocol=\"$protocol\" port=\"$port2\"/>" >> /etc/firewalld/services/$title.xml	
-	echo "</service>" >> /etc/firewalld/services/$title.xml
+	echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>" >> /etc/firewalld/services/$service.xml
+	echo "<service>" >> /etc/firewalld/services/$service.xml
+	echo "   <short>$title</short>" >> /etc/firewalld/services/$service.xml
+	echo "   <description>$description</description>" >> /etc/firewalld/services/$service.xml
+	echo "   <port protocol=\"$protocol\" port=\"$port1\"/>" >> /etc/firewalld/services/$service.xml
+	echo "   <port protocol=\"$protocol\" port=\"$port2\"/>" >> /etc/firewalld/services/$service.xml
+	echo "</service>" >> /etc/firewalld/services/$service.xml
 	firewall-offline-cmd --zone=public --add-interface=eth0
 	firewall-offline-cmd --set-default-zone=public
 	firewall-offline-cmd --zone=public --add-service=ssh
-	firewall-offline-cmd --zone=public --add-service=$title
+	firewall-offline-cmd --zone=public --add-service=$service
 	echo "Default Zone" >> /home/test
 	firewall-offline-cmd --get-default-zone >> /home/test
 	firewall-offline-cmd --info-zone=public >> /home/test
