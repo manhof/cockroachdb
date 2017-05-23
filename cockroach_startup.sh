@@ -6,7 +6,8 @@ country=$3
 state=$4
 city=$5
 region=$6
-master=$7 #This value doesn't matter if this is the master node
+store=$7
+master=$8 #This value doesn't matter if this is the master node
 if [[ $masterb -eq 1 ]]
  then
 	echo "setting up server as Master" >> /home/test
