@@ -1,6 +1,7 @@
 #!/bin/bash
 #Cockroach startup 
 masterb=$1
+echo $masterb >> /home/mast
 pub=$2
 country=$3
 state=$4
