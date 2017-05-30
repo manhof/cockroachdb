@@ -8,7 +8,7 @@ city=$5
 region=$6
 store=$7
 master=$8 #This value doesn't matter if this is the master node
-if [[ $masterb =  true ]]
+if [[ "$masterb" =  true ]]
  then
 	echo "setting up server as Master" >> /home/test
     cockroach start --insecure --advertise-host=$pub --background --http-port=80 --store=/mnt/cockroach --locality=country=$country,state=$state,city=$city,region=$region 
