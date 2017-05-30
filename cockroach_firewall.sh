@@ -1,5 +1,7 @@
 #!/bin/bash
-serverbuild= gawk -F= '/^ID=/{print $2}' /etc/os-release
+gawk -F= '/^ID=/{print $2}' /etc/os-release > /home/id.txt
+serverbuild=$(cat /home/id.txt)
+echo " This is the Server Build: " $serverbuild >> /home/test
 service="Cockroachdb"
 title= "Cockroachdb Ports requried for Admin"
 description="Cockroachdb ports required for access and administration. we use a different default http-port (80) than default"
