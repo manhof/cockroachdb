@@ -15,7 +15,7 @@ if [[ $serverbuild == *"ubuntu"* ]]
     echo "title=$title" >> /etc/ufw/applications.d/$service
     echo "description=$description" >> /etc/ufw/applications.d/$service
     echo "ports=$port1,$port2/$protocol" >> /etc/ufw/applications.d/$service
-    ufw update $service
+    ufw app update $service
 	ufw allow in OpenSSH
     ufw allow in $service
     ufw enable
