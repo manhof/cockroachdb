@@ -17,6 +17,6 @@ if [[ "$masterb" =  True ]]
 else
     echo "setting up Server as slave. Connecting to Master $master" >> /home/test
     echo "cockroach start --insecure --advertise-host=$pub --background --http-port=80 --store=/mnt/cockroach --locality=country=$country,state=$state,city=$city,region=$region --join=$master" >> /home/test
-    cockroach start --insecure --advertise-host=$pub --background --http-port=80 --store=/mnt/cockroach --locality=country=$country,state=$state,city=$city,region=$region --join=$master   
+    cockroach start --insecure --advertise-host=$pub --background --http-port=80 --store=/mnt/cockroach --locality=country=$country,state="$state",city=$city,region=$region --join=$master   
 fi
 echo "Cockroachdb has been started and can be accessed at http://$pub" >> /home/test
