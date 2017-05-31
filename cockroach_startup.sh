@@ -9,6 +9,7 @@ city=$5
 region=$6
 store=$7
 master=$8 #This value doesn't matter if this is the master node
+echo $master >> /home/test
 if [[ "$masterb" =  True ]]
  then
     echo "setting up server as Master" >> /home/test
