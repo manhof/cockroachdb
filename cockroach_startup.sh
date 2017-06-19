@@ -9,12 +9,12 @@ city=$5
 region=$6
 store=$7
 master=$8 #This value doesn't matter if this is the master node
-secure=$9
-ca_dir=$10
-key_dir=$11
-ca_crt=$12
-crt_crt=$13
-key_key=$14
+secure=$14
+ca_dir=$9
+key_dir=$10
+ca_crt=$11
+crt_crt=$12
+key_key=$13
 echo $master >> /home/test
 echo " This is the location for file: $ca_dir"
 echo " location 2: $key_dir"
