@@ -3,6 +3,7 @@
 secure= $1
 ca_dir= $2
 key_dir= $3
+echo $secure
 curl -O https://binaries.cockroachdb.com/cockroach-latest.linux-amd64.tgz
 tar xfz cockroach-latest.linux-amd64.tgz
 cp -i cockroach-latest.linux-amd64/cockroach /usr/bin
