@@ -31,6 +31,7 @@ if [[ "$masterb" =  True ]]
    echo "setting up server as Master in Insecure Mode" >> /home/test
    cockroach start --insecure --advertise-host=$pub --background --http-port=80 --store=$store --locality=country=$country,state="$state",city="$city",region=$region 
    echo "Cockroachdb has been started and can be accessed at http://$pub" >> /home/test
+  fi 
 else
   if [["$secure" = True ]]
    then
@@ -47,4 +48,5 @@ else
    echo "cockroach start --insecure --advertise-host=$pub --background --http-port=80 --store=$store --locality=country=$country,state=$state,city=$city,region=$region --join=$master" >> /home/test
    cockroach start --insecure --advertise-host=$pub --background --http-port=80 --store=$store --locality=country=$country,state="$state",city="$city",region=$region --join=$master  --logtostderr 
    echo "Cockroachdb has been started and can be accessed at http://$pub" >> /home/test
+ fi
 fi
