@@ -10,8 +10,8 @@ echo "Cockroach has been Installed" >> /home/test
 cockroach version >> /home/test
 if [[ "$secure" = True ]]
  then
-  mkdir $ca_dir
-  mkdir $key_dir
+  mkdir -p $ca_dir
+  mkdir -p $key_dir
   echo " Cert dirs have been created" >> /home/test
  else
   echo "Non Secure Setup" >> /home/test
