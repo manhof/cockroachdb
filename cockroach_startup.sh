@@ -16,7 +16,8 @@ ca_crt=$12
 crt_crt=$13
 key_key=$14
 echo $master >> /home/test
-echo $secure
+echo " This is the location for file: $ca_dir"
+echo " location 2: $key_dir"
 if [[ "$masterb" =  True ]]
 then
  if [[ "$secure" = True ]]
